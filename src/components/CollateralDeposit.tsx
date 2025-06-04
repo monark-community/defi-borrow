@@ -16,7 +16,7 @@ const COLLATERAL_ASSETS = [
     price: 2400,
     ltv: 80,
     icon: DollarSign,
-    color: "text-blue-400"
+    color: "text-blue-500"
   },
   {
     id: "btc",
@@ -25,7 +25,7 @@ const COLLATERAL_ASSETS = [
     price: 65000,
     ltv: 75,
     icon: Bitcoin,
-    color: "text-orange-400"
+    color: "text-orange-500"
   },
   {
     id: "usdc",
@@ -34,7 +34,7 @@ const COLLATERAL_ASSETS = [
     price: 1,
     ltv: 85,
     icon: Coins,
-    color: "text-green-400"
+    color: "text-green-500"
   }
 ];
 
@@ -65,7 +65,7 @@ export const CollateralDeposit = ({ isOpen, onClose, onDeposit }: CollateralDepo
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-slate-800 border-slate-700 text-white max-w-2xl">
+      <DialogContent className="bg-white border-gray-200 text-gray-900 max-w-2xl">
         <DialogHeader>
           <DialogTitle className="text-xl">Deposit Collateral</DialogTitle>
         </DialogHeader>
@@ -73,7 +73,7 @@ export const CollateralDeposit = ({ isOpen, onClose, onDeposit }: CollateralDepo
         <div className="space-y-6">
           {/* Asset Selection */}
           <div>
-            <h3 className="text-sm font-medium text-slate-400 mb-3">Select Collateral Asset</h3>
+            <h3 className="text-sm font-medium text-gray-600 mb-3">Select Collateral Asset</h3>
             <div className="grid grid-cols-3 gap-3">
               {COLLATERAL_ASSETS.map((asset) => {
                 const Icon = asset.icon;
@@ -82,15 +82,15 @@ export const CollateralDeposit = ({ isOpen, onClose, onDeposit }: CollateralDepo
                     key={asset.id}
                     className={`cursor-pointer transition-all duration-200 ${
                       selectedAsset.id === asset.id
-                        ? "bg-blue-600/20 border-blue-500"
-                        : "bg-slate-700 border-slate-600 hover:bg-slate-600"
+                        ? "bg-blue-50 border-blue-300"
+                        : "bg-gray-50 border-gray-200 hover:bg-gray-100"
                     }`}
                     onClick={() => setSelectedAsset(asset)}
                   >
                     <CardContent className="p-4 text-center">
                       <Icon className={`w-8 h-8 mx-auto mb-2 ${asset.color}`} />
-                      <div className="font-medium">{asset.symbol}</div>
-                      <div className="text-xs text-slate-400">${asset.price.toLocaleString()}</div>
+                      <div className="font-medium text-gray-900">{asset.symbol}</div>
+                      <div className="text-xs text-gray-600">${asset.price.toLocaleString()}</div>
                       <Badge variant="outline" className="mt-2 text-xs">
                         {asset.ltv}% LTV
                       </Badge>
@@ -104,8 +104,8 @@ export const CollateralDeposit = ({ isOpen, onClose, onDeposit }: CollateralDepo
           {/* Amount Input */}
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <h3 className="text-sm font-medium text-slate-400">Deposit Amount</h3>
-              <span className="text-sm text-slate-400">
+              <h3 className="text-sm font-medium text-gray-600">Deposit Amount</h3>
+              <span className="text-sm text-gray-600">
                 Balance: {maxAmount} {selectedAsset.symbol}
               </span>
             </div>
@@ -121,7 +121,7 @@ export const CollateralDeposit = ({ isOpen, onClose, onDeposit }: CollateralDepo
                       setAmount(newAmount);
                       setSliderValue([(newAmount / maxAmount) * 100]);
                     }}
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="bg-white border-gray-300 text-gray-900"
                     placeholder="0.0"
                   />
                 </div>
@@ -134,7 +134,7 @@ export const CollateralDeposit = ({ isOpen, onClose, onDeposit }: CollateralDepo
                       setAmount(newAmount);
                       setSliderValue([25]);
                     }}
-                    className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="border-gray-300 text-gray-700 hover:bg-gray-50"
                   >
                     25%
                   </Button>
@@ -146,7 +146,7 @@ export const CollateralDeposit = ({ isOpen, onClose, onDeposit }: CollateralDepo
                       setAmount(newAmount);
                       setSliderValue([50]);
                     }}
-                    className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="border-gray-300 text-gray-700 hover:bg-gray-50"
                   >
                     50%
                   </Button>
@@ -157,7 +157,7 @@ export const CollateralDeposit = ({ isOpen, onClose, onDeposit }: CollateralDepo
                       setAmount(maxAmount);
                       setSliderValue([100]);
                     }}
-                    className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="border-gray-300 text-gray-700 hover:bg-gray-50"
                   >
                     MAX
                   </Button>
@@ -174,24 +174,24 @@ export const CollateralDeposit = ({ isOpen, onClose, onDeposit }: CollateralDepo
             </div>
 
             {/* Summary */}
-            <Card className="bg-slate-700 border-slate-600">
+            <Card className="bg-gray-50 border-gray-200">
               <CardContent className="p-4">
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Depositing</span>
-                    <span>{amount.toFixed(4)} {selectedAsset.symbol}</span>
+                    <span className="text-gray-600">Depositing</span>
+                    <span className="text-gray-900">{amount.toFixed(4)} {selectedAsset.symbol}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-400">USD Value</span>
-                    <span className="font-medium">${usdValue.toLocaleString()}</span>
+                    <span className="text-gray-600">USD Value</span>
+                    <span className="font-medium text-gray-900">${usdValue.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Max Borrow (75%)</span>
-                    <span className="text-green-400">${(usdValue * 0.75).toLocaleString()}</span>
+                    <span className="text-gray-600">Max Borrow (75%)</span>
+                    <span className="text-green-600">${(usdValue * 0.75).toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Liquidation LTV</span>
-                    <span className="text-orange-400">{selectedAsset.ltv}%</span>
+                    <span className="text-gray-600">Liquidation LTV</span>
+                    <span className="text-orange-600">{selectedAsset.ltv}%</span>
                   </div>
                 </div>
               </CardContent>
@@ -200,13 +200,13 @@ export const CollateralDeposit = ({ isOpen, onClose, onDeposit }: CollateralDepo
 
           {/* Action Buttons */}
           <div className="flex space-x-4">
-            <Button variant="outline" onClick={onClose} className="flex-1 border-slate-600 text-slate-300 hover:bg-slate-700">
+            <Button variant="outline" onClick={onClose} className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50">
               Cancel
             </Button>
             <Button 
               onClick={handleDeposit}
               disabled={amount === 0}
-              className="flex-1 bg-green-600 hover:bg-green-700"
+              className="flex-1 bg-green-600 hover:bg-green-700 text-white"
             >
               Deposit Collateral
             </Button>
