@@ -68,38 +68,38 @@ export const RepaymentTracker = ({
     <div className="space-y-6">
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="bg-slate-800 border-slate-700">
+        <Card className="bg-white border-gray-200">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-400">Total Borrowed</p>
-                <p className="text-xl font-bold text-red-400">${totalBorrowed.toLocaleString()}</p>
+                <p className="text-sm text-gray-600">Total Borrowed</p>
+                <p className="text-xl font-bold text-red-600">${totalBorrowed.toLocaleString()}</p>
               </div>
-              <DollarSign className="w-5 h-5 text-red-400" />
+              <DollarSign className="w-5 h-5 text-red-600" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800 border-slate-700">
+        <Card className="bg-white border-gray-200">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-400">Accrued Interest</p>
-                <p className="text-xl font-bold text-yellow-400">${accruedInterest.toFixed(2)}</p>
+                <p className="text-sm text-gray-600">Accrued Interest</p>
+                <p className="text-xl font-bold text-yellow-600">${accruedInterest.toFixed(2)}</p>
               </div>
-              <TrendingDown className="w-5 h-5 text-yellow-400" />
+              <TrendingDown className="w-5 h-5 text-yellow-600" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800 border-slate-700">
+        <Card className="bg-white border-gray-200">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-400">Daily Interest</p>
-                <p className="text-xl font-bold text-orange-400">${dailyInterest.toFixed(2)}</p>
+                <p className="text-sm text-gray-600">Daily Interest</p>
+                <p className="text-xl font-bold text-orange-600">${dailyInterest.toFixed(2)}</p>
               </div>
-              <Clock className="w-5 h-5 text-orange-400" />
+              <Clock className="w-5 h-5 text-orange-600" />
             </div>
           </CardContent>
         </Card>
@@ -107,41 +107,41 @@ export const RepaymentTracker = ({
 
       {/* Active Positions */}
       {borrowPositions.length > 0 && (
-        <Card className="bg-slate-800 border-slate-700">
+        <Card className="bg-white border-gray-200">
           <CardHeader>
-            <CardTitle className="text-lg">Active Borrow Positions</CardTitle>
+            <CardTitle className="text-lg text-gray-900">Active Borrow Positions</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {borrowPositions.map((position, index) => (
-                <div key={index} className="bg-slate-700 rounded-lg p-4">
+                <div key={index} className="bg-gray-50 rounded-lg p-4">
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <div className="flex items-center space-x-2">
-                        <span className="font-medium text-lg">{position.asset}</span>
+                        <span className="font-medium text-lg text-gray-900">{position.asset}</span>
                         <Badge variant="outline" className="text-xs">
                           {position.type} Rate
                         </Badge>
                       </div>
-                      <p className="text-sm text-slate-400">
+                      <p className="text-sm text-gray-600">
                         {position.daysActive} days active
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="font-medium">${position.amount.toLocaleString()}</p>
-                      <p className="text-sm text-blue-400">{position.apy}% APY</p>
+                      <p className="font-medium text-gray-900">${position.amount.toLocaleString()}</p>
+                      <p className="text-sm text-blue-600">{position.apy}% APY</p>
                     </div>
                   </div>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-slate-400">Interest Accrued</span>
-                      <span className="text-yellow-400">
+                      <span className="text-gray-600">Interest Accrued</span>
+                      <span className="text-yellow-600">
                         ${((position.amount * position.apy / 100 / 365) * position.daysActive).toFixed(2)}
                       </span>
                     </div>
                     <Progress 
                       value={(position.daysActive / 30) * 100} 
-                      className="h-2 bg-slate-600"
+                      className="h-2 bg-gray-200"
                     />
                   </div>
                 </div>
@@ -153,14 +153,14 @@ export const RepaymentTracker = ({
 
       {/* Repayment Interface */}
       {isModal && totalBorrowed > 0 && (
-        <Card className="bg-slate-800 border-slate-700">
+        <Card className="bg-white border-gray-200">
           <CardHeader>
-            <CardTitle className="text-lg">Repay Loan</CardTitle>
+            <CardTitle className="text-lg text-gray-900">Repay Loan</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-sm text-slate-400">Repayment Amount</span>
-              <span className="text-sm text-slate-400">
+              <span className="text-sm text-gray-600">Repayment Amount</span>
+              <span className="text-sm text-gray-600">
                 Total Owed: ${totalOwed.toLocaleString()}
               </span>
             </div>
@@ -176,7 +176,7 @@ export const RepaymentTracker = ({
                       setRepayAmount(newAmount);
                       setSliderValue([(newAmount / totalOwed) * 100]);
                     }}
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="bg-white border-gray-300 text-gray-900"
                     placeholder="0.0"
                   />
                 </div>
@@ -189,7 +189,7 @@ export const RepaymentTracker = ({
                       setRepayAmount(newAmount);
                       setSliderValue([25]);
                     }}
-                    className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="border-gray-300 text-gray-700 hover:bg-gray-50"
                   >
                     25%
                   </Button>
@@ -201,7 +201,7 @@ export const RepaymentTracker = ({
                       setRepayAmount(newAmount);
                       setSliderValue([50]);
                     }}
-                    className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="border-gray-300 text-gray-700 hover:bg-gray-50"
                   >
                     50%
                   </Button>
@@ -212,7 +212,7 @@ export const RepaymentTracker = ({
                       setRepayAmount(totalOwed);
                       setSliderValue([100]);
                     }}
-                    className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="border-gray-300 text-gray-700 hover:bg-gray-50"
                   >
                     MAX
                   </Button>
@@ -230,20 +230,20 @@ export const RepaymentTracker = ({
 
             {/* Repayment Impact */}
             {repayAmount > 0 && (
-              <Card className="bg-slate-700 border-slate-600">
+              <Card className="bg-gray-50 border-gray-200">
                 <CardContent className="p-4">
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-slate-400">Repaying</span>
-                      <span className="font-medium">${repayAmount.toLocaleString()}</span>
+                      <span className="text-gray-600">Repaying</span>
+                      <span className="font-medium text-gray-900">${repayAmount.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-400">Remaining Debt</span>
-                      <span className="text-red-400">${(totalOwed - repayAmount).toLocaleString()}</span>
+                      <span className="text-gray-600">Remaining Debt</span>
+                      <span className="text-red-600">${(totalOwed - repayAmount).toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-400">New Health Factor</span>
-                      <span className="text-green-400">
+                      <span className="text-gray-600">New Health Factor</span>
+                      <span className="text-green-600">
                         {newHealthFactor === 999 ? "∞" : newHealthFactor.toFixed(2)}
                       </span>
                     </div>
@@ -253,13 +253,13 @@ export const RepaymentTracker = ({
             )}
 
             <div className="flex space-x-4">
-              <Button variant="outline" onClick={onClose} className="flex-1 border-slate-600 text-slate-300 hover:bg-slate-700">
+              <Button variant="outline" onClick={onClose} className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50">
                 Cancel
               </Button>
               <Button 
                 onClick={handleRepay}
                 disabled={repayAmount === 0}
-                className="flex-1 bg-purple-600 hover:bg-purple-700"
+                className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
               >
                 Repay ${repayAmount.toLocaleString()}
               </Button>
@@ -270,9 +270,9 @@ export const RepaymentTracker = ({
 
       {/* Interest Forecast */}
       {!isModal && totalBorrowed > 0 && (
-        <Card className="bg-slate-800 border-slate-700">
+        <Card className="bg-white border-gray-200">
           <CardHeader>
-            <CardTitle className="text-lg flex items-center">
+            <CardTitle className="text-lg flex items-center text-gray-900">
               <Calendar className="w-5 h-5 mr-2" />
               Interest Forecast
             </CardTitle>
@@ -280,26 +280,26 @@ export const RepaymentTracker = ({
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center">
-                <p className="text-sm text-slate-400">7 Days</p>
-                <p className="text-lg font-medium text-yellow-400">
+                <p className="text-sm text-gray-600">7 Days</p>
+                <p className="text-lg font-medium text-yellow-600">
                   ${(dailyInterest * 7).toFixed(2)}
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-slate-400">30 Days</p>
-                <p className="text-lg font-medium text-orange-400">
+                <p className="text-sm text-gray-600">30 Days</p>
+                <p className="text-lg font-medium text-orange-600">
                   ${(dailyInterest * 30).toFixed(2)}
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-slate-400">90 Days</p>
-                <p className="text-lg font-medium text-red-400">
+                <p className="text-sm text-gray-600">90 Days</p>
+                <p className="text-lg font-medium text-red-600">
                   ${(dailyInterest * 90).toFixed(2)}
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-slate-400">1 Year</p>
-                <p className="text-lg font-medium text-red-500">
+                <p className="text-sm text-gray-600">1 Year</p>
+                <p className="text-lg font-medium text-red-700">
                   ${(totalBorrowed * 0.052).toFixed(2)}
                 </p>
               </div>
@@ -313,7 +313,7 @@ export const RepaymentTracker = ({
   if (isModal) {
     return (
       <Dialog open={isModal} onOpenChange={onClose}>
-        <DialogContent className="bg-slate-800 border-slate-700 text-white max-w-2xl">
+        <DialogContent className="bg-white border-gray-200 text-gray-900 max-w-2xl">
           <DialogHeader>
             <DialogTitle className="text-xl">Repay Loan</DialogTitle>
           </DialogHeader>
@@ -324,13 +324,13 @@ export const RepaymentTracker = ({
   }
 
   return (
-    <Card className="bg-slate-800 border-slate-700">
+    <Card className="bg-white border-gray-200">
       <CardHeader>
-        <CardTitle className="text-lg">Repayment Tracker</CardTitle>
+        <CardTitle className="text-lg text-gray-900">Repayment Tracker</CardTitle>
       </CardHeader>
       <CardContent>
         {totalBorrowed > 0 ? content : (
-          <div className="text-center py-8 text-slate-400">
+          <div className="text-center py-8 text-gray-600">
             <DollarSign className="w-12 h-12 mx-auto mb-4 opacity-50" />
             <p>No active loans</p>
             <p className="text-sm">Deposit collateral and borrow assets to get started</p>

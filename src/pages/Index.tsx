@@ -46,21 +46,21 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900">
       {/* Header */}
-      <div className="border-b border-slate-800 bg-slate-900/95 backdrop-blur-sm sticky top-0 z-40">
+      <div className="border-b border-gray-200 bg-white backdrop-blur-sm sticky top-0 z-40">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-5 h-5" />
+                <TrendingUp className="w-5 h-5 text-white" />
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 BorrowX
               </h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800">
+              <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50">
                 <Wallet className="w-4 h-4 mr-2" />
                 Connect Wallet
               </Button>
@@ -72,9 +72,9 @@ const Index = () => {
       <div className="container mx-auto px-6 py-8">
         {/* Health Factor Alert */}
         {healthFactor < 1.5 && (
-          <Alert className="mb-6 border-orange-500 bg-orange-500/10">
-            <AlertTriangle className="h-4 w-4 text-orange-500" />
-            <AlertDescription className="text-orange-200">
+          <Alert className="mb-6 border-orange-500 bg-orange-50">
+            <AlertTriangle className="h-4 w-4 text-orange-600" />
+            <AlertDescription className="text-orange-800">
               Warning: Your health factor is {healthFactor.toFixed(2)}. Consider adding more collateral or repaying part of your loan.
             </AlertDescription>
           </Alert>
@@ -82,47 +82,47 @@ const Index = () => {
 
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="bg-white border-gray-200">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-slate-400">Total Collateral</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-600">Total Collateral</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
-                <span className="text-2xl font-bold text-green-400">${totalCollateral.toLocaleString()}</span>
-                <ArrowUpRight className="w-5 h-5 text-green-400" />
+                <span className="text-2xl font-bold text-green-600">${totalCollateral.toLocaleString()}</span>
+                <ArrowUpRight className="w-5 h-5 text-green-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="bg-white border-gray-200">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-slate-400">Total Borrowed</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-600">Total Borrowed</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
-                <span className="text-2xl font-bold text-red-400">${totalBorrowed.toLocaleString()}</span>
-                <ArrowDownRight className="w-5 h-5 text-red-400" />
+                <span className="text-2xl font-bold text-red-600">${totalBorrowed.toLocaleString()}</span>
+                <ArrowDownRight className="w-5 h-5 text-red-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="bg-white border-gray-200">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-slate-400">Available to Borrow</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-600">Available to Borrow</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
-                <span className="text-2xl font-bold text-blue-400">
+                <span className="text-2xl font-bold text-blue-600">
                   ${Math.max(0, (totalCollateral * 0.75) - totalBorrowed).toLocaleString()}
                 </span>
-                <DollarSign className="w-5 h-5 text-blue-400" />
+                <DollarSign className="w-5 h-5 text-blue-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="bg-white border-gray-200">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-slate-400">Health Factor</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-600">Health Factor</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
@@ -142,21 +142,21 @@ const Index = () => {
           {/* Left Column - Actions */}
           <div className="space-y-6">
             {/* Quick Actions */}
-            <Card className="bg-slate-800 border-slate-700">
+            <Card className="bg-white border-gray-200">
               <CardHeader>
-                <CardTitle className="text-lg">Quick Actions</CardTitle>
+                <CardTitle className="text-lg text-gray-900">Quick Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Button 
                   onClick={() => setShowCollateralModal(true)}
-                  className="w-full bg-green-600 hover:bg-green-700"
+                  className="w-full bg-green-600 hover:bg-green-700 text-white"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Deposit Collateral
                 </Button>
                 <Button 
                   onClick={() => setShowBorrowModal(true)}
-                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                   disabled={totalCollateral === 0}
                 >
                   <ArrowDownRight className="w-4 h-4 mr-2" />
@@ -164,7 +164,7 @@ const Index = () => {
                 </Button>
                 <Button 
                   onClick={() => setShowRepayModal(true)}
-                  className="w-full bg-purple-600 hover:bg-purple-700"
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
                   disabled={totalBorrowed === 0}
                 >
                   <ArrowUpRight className="w-4 h-4 mr-2" />
